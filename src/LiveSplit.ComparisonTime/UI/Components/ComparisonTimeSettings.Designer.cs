@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbTimingMethod = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbComparison = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -38,6 +40,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.grpType = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.rdoTypeFinalTime = new System.Windows.Forms.RadioButton();
+            this.rdoTypeSplitTime = new System.Windows.Forms.RadioButton();
+            this.rdoTypeSegmentTime = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.rdoSeconds = new System.Windows.Forms.RadioButton();
@@ -53,24 +60,18 @@
             this.btnColor1 = new System.Windows.Forms.Button();
             this.btnColor2 = new System.Windows.Forms.Button();
             this.chkTwoRows = new System.Windows.Forms.CheckBox();
-            this.cmbTimingMethod = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.grpType = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.rdoTypeFinalTime = new System.Windows.Forms.RadioButton();
-            this.rdoTypeSplitTime = new System.Windows.Forms.RadioButton();
-            this.rdoTypeSegmentTime = new System.Windows.Forms.RadioButton();
+            this.rdoMilliseconds = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.grpType.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.grpType.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -103,6 +104,32 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 152F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(462, 405);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 13);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "Timing Method:";
+            // 
+            // cmbTimingMethod
+            // 
+            this.cmbTimingMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.cmbTimingMethod, 3);
+            this.cmbTimingMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTimingMethod.FormattingEnabled = true;
+            this.cmbTimingMethod.Items.AddRange(new object[] {
+            "Current Timing Method",
+            "Real Time",
+            "Game Time"});
+            this.cmbTimingMethod.Location = new System.Drawing.Point(162, 62);
+            this.cmbTimingMethod.Name = "cmbTimingMethod";
+            this.cmbTimingMethod.Size = new System.Drawing.Size(297, 21);
+            this.cmbTimingMethod.TabIndex = 36;
+            this.cmbTimingMethod.SelectedIndexChanged += new System.EventHandler(this.cmbTimingMethod_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -221,6 +248,73 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(450, 181);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
+            // grpType
+            // 
+            this.tableLayoutPanel3.SetColumnSpan(this.grpType, 2);
+            this.grpType.Controls.Add(this.tableLayoutPanel6);
+            this.grpType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpType.Location = new System.Drawing.Point(3, 135);
+            this.grpType.Name = "grpType";
+            this.grpType.Size = new System.Drawing.Size(444, 43);
+            this.grpType.TabIndex = 7;
+            this.grpType.TabStop = false;
+            this.grpType.Text = "Type";
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel6.Controls.Add(this.rdoTypeFinalTime, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.rdoTypeSplitTime, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.rdoTypeSegmentTime, 2, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(438, 24);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // rdoTypeFinalTime
+            // 
+            this.rdoTypeFinalTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdoTypeFinalTime.AutoSize = true;
+            this.rdoTypeFinalTime.Location = new System.Drawing.Point(3, 3);
+            this.rdoTypeFinalTime.Name = "rdoTypeFinalTime";
+            this.rdoTypeFinalTime.Size = new System.Drawing.Size(140, 17);
+            this.rdoTypeFinalTime.TabIndex = 0;
+            this.rdoTypeFinalTime.TabStop = true;
+            this.rdoTypeFinalTime.Text = "Final Time";
+            this.rdoTypeFinalTime.UseVisualStyleBackColor = true;
+            this.rdoTypeFinalTime.CheckedChanged += new System.EventHandler(this.rdoTypeFinalTime_CheckedChanged);
+            // 
+            // rdoTypeSplitTime
+            // 
+            this.rdoTypeSplitTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdoTypeSplitTime.AutoSize = true;
+            this.rdoTypeSplitTime.Location = new System.Drawing.Point(149, 3);
+            this.rdoTypeSplitTime.Name = "rdoTypeSplitTime";
+            this.rdoTypeSplitTime.Size = new System.Drawing.Size(140, 17);
+            this.rdoTypeSplitTime.TabIndex = 1;
+            this.rdoTypeSplitTime.TabStop = true;
+            this.rdoTypeSplitTime.Text = "Split Time";
+            this.rdoTypeSplitTime.UseVisualStyleBackColor = true;
+            this.rdoTypeSplitTime.CheckedChanged += new System.EventHandler(this.rdoTypeSplitTime_CheckedChanged);
+            // 
+            // rdoTypeSegmentTime
+            // 
+            this.rdoTypeSegmentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdoTypeSegmentTime.AutoSize = true;
+            this.rdoTypeSegmentTime.Location = new System.Drawing.Point(295, 3);
+            this.rdoTypeSegmentTime.Name = "rdoTypeSegmentTime";
+            this.rdoTypeSegmentTime.Size = new System.Drawing.Size(140, 17);
+            this.rdoTypeSegmentTime.TabIndex = 2;
+            this.rdoTypeSegmentTime.TabStop = true;
+            this.rdoTypeSegmentTime.Text = "Segment Time";
+            this.rdoTypeSegmentTime.UseVisualStyleBackColor = true;
+            // 
             // groupBox4
             // 
             this.tableLayoutPanel3.SetColumnSpan(this.groupBox4, 2);
@@ -235,10 +329,12 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel5.Controls.Add(this.rdoMilliseconds, 3, 0);
             this.tableLayoutPanel5.Controls.Add(this.rdoSeconds, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.rdoTenths, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.rdoHundredths, 2, 0);
@@ -256,7 +352,7 @@
             this.rdoSeconds.AutoSize = true;
             this.rdoSeconds.Location = new System.Drawing.Point(3, 3);
             this.rdoSeconds.Name = "rdoSeconds";
-            this.rdoSeconds.Size = new System.Drawing.Size(140, 17);
+            this.rdoSeconds.Size = new System.Drawing.Size(103, 17);
             this.rdoSeconds.TabIndex = 0;
             this.rdoSeconds.TabStop = true;
             this.rdoSeconds.Text = "Seconds";
@@ -266,9 +362,9 @@
             // 
             this.rdoTenths.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoTenths.AutoSize = true;
-            this.rdoTenths.Location = new System.Drawing.Point(149, 3);
+            this.rdoTenths.Location = new System.Drawing.Point(112, 3);
             this.rdoTenths.Name = "rdoTenths";
-            this.rdoTenths.Size = new System.Drawing.Size(140, 17);
+            this.rdoTenths.Size = new System.Drawing.Size(103, 17);
             this.rdoTenths.TabIndex = 1;
             this.rdoTenths.TabStop = true;
             this.rdoTenths.Text = "Tenths";
@@ -278,9 +374,9 @@
             // 
             this.rdoHundredths.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.rdoHundredths.AutoSize = true;
-            this.rdoHundredths.Location = new System.Drawing.Point(295, 3);
+            this.rdoHundredths.Location = new System.Drawing.Point(221, 3);
             this.rdoHundredths.Name = "rdoHundredths";
-            this.rdoHundredths.Size = new System.Drawing.Size(140, 17);
+            this.rdoHundredths.Size = new System.Drawing.Size(103, 17);
             this.rdoHundredths.TabIndex = 2;
             this.rdoHundredths.TabStop = true;
             this.rdoHundredths.Text = "Hundredths";
@@ -413,98 +509,17 @@
             this.chkTwoRows.Text = "Display 2 Rows";
             this.chkTwoRows.UseVisualStyleBackColor = true;
             // 
-            // cmbTimingMethod
+            // rdoMilliseconds
             // 
-            this.cmbTimingMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.cmbTimingMethod, 3);
-            this.cmbTimingMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTimingMethod.FormattingEnabled = true;
-            this.cmbTimingMethod.Items.AddRange(new object[] {
-            "Current Timing Method",
-            "Real Time",
-            "Game Time"});
-            this.cmbTimingMethod.Location = new System.Drawing.Point(162, 62);
-            this.cmbTimingMethod.Name = "cmbTimingMethod";
-            this.cmbTimingMethod.Size = new System.Drawing.Size(297, 21);
-            this.cmbTimingMethod.TabIndex = 36;
-            this.cmbTimingMethod.SelectedIndexChanged += new System.EventHandler(this.cmbTimingMethod_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 13);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "Timing Method:";
-            // 
-            // grpType
-            // 
-            this.tableLayoutPanel3.SetColumnSpan(this.grpType, 2);
-            this.grpType.Controls.Add(this.tableLayoutPanel6);
-            this.grpType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpType.Location = new System.Drawing.Point(3, 135);
-            this.grpType.Name = "grpType";
-            this.grpType.Size = new System.Drawing.Size(444, 43);
-            this.grpType.TabIndex = 7;
-            this.grpType.TabStop = false;
-            this.grpType.Text = "Type";
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 3;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel6.Controls.Add(this.rdoTypeFinalTime, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.rdoTypeSplitTime, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.rdoTypeSegmentTime, 2, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(438, 24);
-            this.tableLayoutPanel6.TabIndex = 0;
-            // 
-            // rdoTypeFinalTime
-            // 
-            this.rdoTypeFinalTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdoTypeFinalTime.AutoSize = true;
-            this.rdoTypeFinalTime.Location = new System.Drawing.Point(3, 3);
-            this.rdoTypeFinalTime.Name = "rdoTypeFinalTime";
-            this.rdoTypeFinalTime.Size = new System.Drawing.Size(140, 17);
-            this.rdoTypeFinalTime.TabIndex = 0;
-            this.rdoTypeFinalTime.TabStop = true;
-            this.rdoTypeFinalTime.Text = "Final Time";
-            this.rdoTypeFinalTime.UseVisualStyleBackColor = true;
-            this.rdoTypeFinalTime.CheckedChanged += new System.EventHandler(this.rdoTypeFinalTime_CheckedChanged);
-            // 
-            // rdoTypeSplitTime
-            // 
-            this.rdoTypeSplitTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdoTypeSplitTime.AutoSize = true;
-            this.rdoTypeSplitTime.Location = new System.Drawing.Point(149, 3);
-            this.rdoTypeSplitTime.Name = "rdoTypeSplitTime";
-            this.rdoTypeSplitTime.Size = new System.Drawing.Size(140, 17);
-            this.rdoTypeSplitTime.TabIndex = 1;
-            this.rdoTypeSplitTime.TabStop = true;
-            this.rdoTypeSplitTime.Text = "Split Time";
-            this.rdoTypeSplitTime.UseVisualStyleBackColor = true;
-            this.rdoTypeSplitTime.CheckedChanged += new System.EventHandler(this.rdoTypeSplitTime_CheckedChanged);
-            // 
-            // rdoTypeSegmentTime
-            // 
-            this.rdoTypeSegmentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdoTypeSegmentTime.AutoSize = true;
-            this.rdoTypeSegmentTime.Location = new System.Drawing.Point(295, 3);
-            this.rdoTypeSegmentTime.Name = "rdoTypeSegmentTime";
-            this.rdoTypeSegmentTime.Size = new System.Drawing.Size(140, 17);
-            this.rdoTypeSegmentTime.TabIndex = 2;
-            this.rdoTypeSegmentTime.TabStop = true;
-            this.rdoTypeSegmentTime.Text = "Segment Time";
-            this.rdoTypeSegmentTime.UseVisualStyleBackColor = true;
+            this.rdoMilliseconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.rdoMilliseconds.AutoSize = true;
+            this.rdoMilliseconds.Location = new System.Drawing.Point(330, 3);
+            this.rdoMilliseconds.Name = "rdoMilliseconds";
+            this.rdoMilliseconds.Size = new System.Drawing.Size(105, 17);
+            this.rdoMilliseconds.TabIndex = 3;
+            this.rdoMilliseconds.TabStop = true;
+            this.rdoMilliseconds.Text = "Milliseconds";
+            this.rdoMilliseconds.UseVisualStyleBackColor = true;
             // 
             // ComparisonTimeSettings
             // 
@@ -522,15 +537,15 @@
             this.tableLayoutPanel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.grpType.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.grpType.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -569,5 +584,6 @@
         private System.Windows.Forms.RadioButton rdoTypeFinalTime;
         private System.Windows.Forms.RadioButton rdoTypeSplitTime;
         private System.Windows.Forms.RadioButton rdoTypeSegmentTime;
+        private System.Windows.Forms.RadioButton rdoMilliseconds;
     }
 }
