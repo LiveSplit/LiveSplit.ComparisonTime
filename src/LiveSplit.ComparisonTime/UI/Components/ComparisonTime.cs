@@ -213,7 +213,7 @@ public class ComparisonTime : IComponent
             currentSplitComparisonTime = state.Run[state.CurrentSplitIndex].Comparisons[comparison][timingMethod];
         }
 
-        var previousSplitIndex = state.CurrentSplitIndex - 1;
+        int previousSplitIndex = state.CurrentSplitIndex - 1;
         if (state.CurrentPhase == TimerPhase.Ended)
         {
             previousSplitIndex = state.Run.Count - 2;
@@ -234,13 +234,13 @@ public class ComparisonTime : IComponent
 
     public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
     {
-        var comparison = Settings.Comparison == "Current Comparison" ? state.CurrentComparison : Settings.Comparison;
+        string comparison = Settings.Comparison == "Current Comparison" ? state.CurrentComparison : Settings.Comparison;
         if (!state.Run.Comparisons.Contains(comparison))
         {
             comparison = state.CurrentComparison;
         }
 
-        var timingMethod = state.CurrentTimingMethod;
+        TimingMethod timingMethod = state.CurrentTimingMethod;
         if (Settings.TimingMethod == "Real Time")
         {
             timingMethod = TimingMethod.RealTime;
@@ -263,8 +263,8 @@ public class ComparisonTime : IComponent
 
     protected string GetComponentName()
     {
-        var isComparisonOverride = Settings.Comparison != "Current Comparison";
-        var isTimingMethodOverride = Settings.TimingMethod != "Current Timing Method";
+        bool isComparisonOverride = Settings.Comparison != "Current Comparison";
+        bool isTimingMethodOverride = Settings.TimingMethod != "Current Timing Method";
 
         if (isComparisonOverride && isTimingMethodOverride)
         {
