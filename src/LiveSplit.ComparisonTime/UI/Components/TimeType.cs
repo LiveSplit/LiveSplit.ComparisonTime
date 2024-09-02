@@ -1,9 +1,8 @@
-namespace LiveSplit.UI.Components
+namespace LiveSplit.UI.Components;
+
+public enum TimeType
 {
-    public enum TimeType
-    {
-        FinalTime,
-        SplitTime,
-        SegmentTime,
-    }
+    FinalTime,
+    SplitTime,
+    SegmentTime,
 }
