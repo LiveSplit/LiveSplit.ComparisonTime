@@ -69,8 +69,8 @@ public class ComparisonTime : IComponent
     private void DrawBackground(Graphics g, LiveSplitState state, float width, float height)
     {
         if (Settings.BackgroundColor.A > 0
-            || Settings.BackgroundGradient != GradientType.Plain
-            && Settings.BackgroundColor2.A > 0)
+            || (Settings.BackgroundGradient != GradientType.Plain
+            && Settings.BackgroundColor2.A > 0))
         {
             var gradientBrush = new LinearGradientBrush(
                         new PointF(0, 0),
@@ -169,7 +169,10 @@ public class ComparisonTime : IComponent
     protected string GetNameValue(string comparison)
     {
         if (Settings.TimingMethod != "Current Timing Method")
+        {
             return $"{comparison} ({Settings.TimingMethod})";
+        }
+
         return comparison;
     }
 
@@ -179,33 +182,52 @@ public class ComparisonTime : IComponent
         {
             return state.Run.Last().Comparisons[comparison][timingMethod];
         }
+
         if (Settings.Type == TimeType.SplitTime)
         {
             if (state.CurrentPhase == TimerPhase.NotRunning)
+            {
                 return null;
+            }
+
             if (state.CurrentPhase == TimerPhase.Ended)
+            {
                 return state.Run.Last().Comparisons[comparison][timingMethod];
+            }
+
             return state.Run[state.CurrentSplitIndex].Comparisons[comparison][timingMethod];
         }
         // Settings.Type == TimeType.SegmentTime
         if (state.CurrentPhase == TimerPhase.NotRunning)
+        {
             return null;
+        }
 
         TimeSpan? currentSplitComparisonTime;
         if (state.CurrentPhase == TimerPhase.Ended)
+        {
             currentSplitComparisonTime = state.Run.Last().Comparisons[comparison][timingMethod];
+        }
         else
+        {
             currentSplitComparisonTime = state.Run[state.CurrentSplitIndex].Comparisons[comparison][timingMethod];
+        }
 
         var previousSplitIndex = state.CurrentSplitIndex - 1;
         if (state.CurrentPhase == TimerPhase.Ended)
+        {
             previousSplitIndex = state.Run.Count - 2;
+        }
 
         TimeSpan? previousSplitComparisonTime;
         if (previousSplitIndex < 0)
+        {
             previousSplitComparisonTime = TimeSpan.Zero;
+        }
         else
+        {
             previousSplitComparisonTime = state.Run[previousSplitIndex].Comparisons[comparison][timingMethod];
+        }
 
         return currentSplitComparisonTime - previousSplitComparisonTime;
     }
@@ -214,13 +236,19 @@ public class ComparisonTime : IComponent
     {
         var comparison = Settings.Comparison == "Current Comparison" ? state.CurrentComparison : Settings.Comparison;
         if (!state.Run.Comparisons.Contains(comparison))
+        {
             comparison = state.CurrentComparison;
+        }
 
         var timingMethod = state.CurrentTimingMethod;
         if (Settings.TimingMethod == "Real Time")
+        {
             timingMethod = TimingMethod.RealTime;
+        }
         else if (Settings.TimingMethod == "Game Time")
+        {
             timingMethod = TimingMethod.GameTime;
+        }
 
         InternalComponent.InformationName = InternalComponent.LongestString = GetNameValue(comparison);
         if (InternalComponent.InformationName != PreviousInformationName)
@@ -239,11 +267,20 @@ public class ComparisonTime : IComponent
         var isTimingMethodOverride = Settings.TimingMethod != "Current Timing Method";
 
         if (isComparisonOverride && isTimingMethodOverride)
+        {
             return $"Comparison Time ({Settings.Comparison}, {Settings.TimingMethod})";
+        }
+
         if (isComparisonOverride)
+        {
             return $"Comparison Time ({Settings.Comparison})";
+        }
+
         if (isTimingMethodOverride)
+        {
             return $"Comparison Time ({Settings.TimingMethod})";
+        }
+
         return "Comparison Time";
     }
 
