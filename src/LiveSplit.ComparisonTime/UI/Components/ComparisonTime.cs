@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
 using LiveSplit.TimeFormatters;
@@ -13,6 +14,8 @@ namespace LiveSplit.UI.Components;
 
 public class ComparisonTime : IComponent
 {
+    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
+
     protected InfoTimeComponent InternalComponent { get; set; }
     public ComparisonTimeSettings Settings { get; set; }
     private SplitTimeFormatter Formatter { get; set; }
@@ -170,10 +173,10 @@ public class ComparisonTime : IComponent
     {
         if (Settings.TimingMethod != "Current Timing Method")
         {
-            return $"{comparison} ({Settings.TimingMethod})";
+            return $"{T(comparison)} ({T(Settings.TimingMethod)})";
         }
 
-        return comparison;
+        return T(comparison);
     }
 
     protected TimeSpan? GetTimeValue(LiveSplitState state, string comparison, TimingMethod timingMethod)
@@ -268,20 +271,20 @@ public class ComparisonTime : IComponent
 
         if (isComparisonOverride && isTimingMethodOverride)
         {
-            return $"Comparison Time ({Settings.Comparison}, {Settings.TimingMethod})";
+            return $"{T("Comparison Time")} ({T(Settings.Comparison)}, {T(Settings.TimingMethod)})";
         }
 
         if (isComparisonOverride)
         {
-            return $"Comparison Time ({Settings.Comparison})";
+            return $"{T("Comparison Time")} ({T(Settings.Comparison)})";
         }
 
         if (isTimingMethodOverride)
         {
-            return $"Comparison Time ({Settings.TimingMethod})";
+            return $"{T("Comparison Time")} ({T(Settings.TimingMethod)})";
         }
 
-        return "Comparison Time";
+        return T("Comparison Time");
     }
 
     public void Dispose()
