@@ -1,14 +1,13 @@
+﻿using LiveSplit.Localization;
+using LiveSplit.Model;
+using LiveSplit.Model.Comparisons;
+using LiveSplit.TimeFormatters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
-
-using LiveSplit.Localization;
-using LiveSplit.Model;
-using LiveSplit.Model.Comparisons;
-using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.UI.Components;
 
@@ -77,14 +76,10 @@ public class ComparisonTime : IComponent
             && Settings.BackgroundColor2.A > 0))
         {
             var gradientBrush = new LinearGradientBrush(
-                        new PointF(0, 0),
-                        Settings.BackgroundGradient == GradientType.Horizontal
-                        ? new PointF(width, 0)
-                        : new PointF(0, height),
-                        Settings.BackgroundColor,
-                        Settings.BackgroundGradient == GradientType.Plain
-                        ? Settings.BackgroundColor
-                        : Settings.BackgroundColor2);
+                new PointF(0, 0),
+                Settings.BackgroundGradient == GradientType.Horizontal ? new PointF(width, 0) : new PointF(0, height),
+                Settings.BackgroundColor,
+                Settings.BackgroundGradient == GradientType.Plain ? Settings.BackgroundColor : Settings.BackgroundColor2);
             g.FillRectangle(gradientBrush, 0, 0, width, height);
         }
     }
@@ -124,46 +119,46 @@ public class ComparisonTime : IComponent
         switch (comparison)
         {
             case Run.PersonalBestComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     "PB",
-                };
+                ];
                 break;
             case AverageSegmentsComparisonGenerator.ComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     AverageSegmentsComparisonGenerator.ShortComparisonName,
-                };
+                ];
                 break;
             case BestSegmentsComparisonGenerator.ComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     BestSegmentsComparisonGenerator.ShortComparisonName,
-                };
+                ];
                 break;
             case LatestRunComparisonGenerator.ComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     LatestRunComparisonGenerator.ShortComparisonName,
-                };
+                ];
                 break;
             case MedianSegmentsComparisonGenerator.ComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     MedianSegmentsComparisonGenerator.ShortComparisonName,
-                };
+                ];
                 break;
             case PercentileComparisonGenerator.ComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     PercentileComparisonGenerator.ShortComparisonName,
-                };
+                ];
                 break;
             case WorstSegmentsComparisonGenerator.ComparisonName:
-                InternalComponent.AlternateNameText = new[]
-                {
+                InternalComponent.AlternateNameText =
+                [
                     WorstSegmentsComparisonGenerator.ShortComparisonName,
-                };
+                ];
                 break;
             default:
                 break;
@@ -184,7 +179,7 @@ public class ComparisonTime : IComponent
     {
         if (Settings.Type == TimeType.FinalTime)
         {
-            return state.Run.Last().Comparisons[comparison][timingMethod];
+            return state.Run[^1].Comparisons[comparison][timingMethod];
         }
 
         if (Settings.Type == TimeType.SplitTime)
@@ -196,7 +191,7 @@ public class ComparisonTime : IComponent
 
             if (state.CurrentPhase == TimerPhase.Ended)
             {
-                return state.Run.Last().Comparisons[comparison][timingMethod];
+                return state.Run[^1].Comparisons[comparison][timingMethod];
             }
 
             return state.Run[state.CurrentSplitIndex].Comparisons[comparison][timingMethod];
@@ -207,32 +202,18 @@ public class ComparisonTime : IComponent
             return null;
         }
 
-        TimeSpan? currentSplitComparisonTime;
-        if (state.CurrentPhase == TimerPhase.Ended)
-        {
-            currentSplitComparisonTime = state.Run.Last().Comparisons[comparison][timingMethod];
-        }
-        else
-        {
-            currentSplitComparisonTime = state.Run[state.CurrentSplitIndex].Comparisons[comparison][timingMethod];
-        }
-
+        TimeSpan? currentSplitComparisonTime = state.CurrentPhase == TimerPhase.Ended
+            ? state.Run[^1].Comparisons[comparison][timingMethod]
+            : state.Run[state.CurrentSplitIndex].Comparisons[comparison][timingMethod];
         int previousSplitIndex = state.CurrentSplitIndex - 1;
         if (state.CurrentPhase == TimerPhase.Ended)
         {
             previousSplitIndex = state.Run.Count - 2;
         }
 
-        TimeSpan? previousSplitComparisonTime;
-        if (previousSplitIndex < 0)
-        {
-            previousSplitComparisonTime = TimeSpan.Zero;
-        }
-        else
-        {
-            previousSplitComparisonTime = state.Run[previousSplitIndex].Comparisons[comparison][timingMethod];
-        }
-
+        TimeSpan? previousSplitComparisonTime = previousSplitIndex < 0
+            ? TimeSpan.Zero
+            : state.Run[previousSplitIndex].Comparisons[comparison][timingMethod];
         return currentSplitComparisonTime - previousSplitComparisonTime;
     }
 
